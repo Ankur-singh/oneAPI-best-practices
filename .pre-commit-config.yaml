@@ -35,16 +35,12 @@ repos:
     - id: nbqa-ruff-format
 
 
-- repo: https://github.com/AnswerDotAI/nbdev
-  rev: 2.3.37  # Use the latest version available
+- repo: https://github.com/srstevenson/nb-clean
+  rev: 4.0.1
   hooks:
-    - id: nbdev_clean
-      name: nbdev_clean
-      entry: nbdev_clean
-      language: python
-      always_run: true
-      pass_filenames: false
-
+    - id: nb-clean
+      args:
+        - --remove-empty-cells
 
 - repo: https://github.com/PyCQA/bandit
   rev: 1.8.3
