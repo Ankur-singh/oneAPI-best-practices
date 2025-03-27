@@ -1,0 +1,59 @@
+exclude: 'Web-Apps'
+
+default_language_version:
+    python: python3
+
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: check-ast
+    -   id: check-merge-conflict
+    -   id: check-added-large-files
+        args: ['--maxkb=1000']
+    -   id: end-of-file-fixer
+        exclude: '^(.*\.svg)$'
+
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  # Ruff version.
+  rev: v0.11.2
+  hooks:
+    # Run the linter.
+    - id: ruff
+      args: [ --fix ]
+    # Run the formatter.
+    - id: ruff-format
+
+- repo: https://github.com/nbQA-dev/nbQA
+  rev: 1.9.1
+  hooks:
+    - id: nbqa-black
+    - id: nbqa-check-ast
+    - id: nbqa-ruff-check
+      args: [ --fix ]
+    - id: nbqa-ruff-format
+
+
+- repo: https://github.com/AnswerDotAI/nbdev
+  rev: 2.3.37  # Use the latest version available
+  hooks:
+    - id: nbdev_clean
+      name: nbdev_clean
+      entry: nbdev_clean
+      language: python
+      always_run: true
+      pass_filenames: false
+
+
+- repo: https://github.com/PyCQA/bandit
+  rev: 1.8.3
+  hooks:
+    - id: bandit
+      name: bandit
+      description: 'Bandit is a tool for finding common security issues in Python code'
+      entry: bandit
+      language: python
+      language_version: python3
+      types: [python]
+      require_serial: true
