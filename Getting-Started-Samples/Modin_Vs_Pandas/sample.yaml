@@ -1,0 +1,8 @@
+platform: [laptop, itac, gtax]
+os: [ linux, windows]
+targetDevice: [ cpu ]
+env: 
+run: |
+  - uv run jupyter nbconvert --to notebook --execute --inplace Modin_Vs_Pandas.ipynb
+cleanup: |
+  - rm data.csv
